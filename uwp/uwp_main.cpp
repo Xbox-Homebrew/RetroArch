@@ -17,6 +17,13 @@
 #include <collection.h>
 #include <windows.devices.enumeration.h>
 #include <gamingdeviceinformation.h>	
+#include <Winuser.h>
+
+#undef WINAPI_PARTITION_SYSTEM
+#define WINAPI_PARTITION_SYSTEM 1
+#include <winternl.h>
+#undef WINAPI_PARTITION_SYSTEM
+#define WINAPI_PARTITION_SYSTEM 0
 
 #include <encodings/utf.h>
 #include <string/stdstring.h>
@@ -171,6 +178,100 @@ const struct rarch_key_map rarch_key_map_uwp[] = {
    { VK_OEM_7, RETROK_QUOTE },
    { 0, RETROK_UNKNOWN }
 };
+
+typedef struct _MY_PEB_LDR_DATA {
+	ULONG Length;
+	BOOL Initialized;
+	PVOID SsHandle;
+	LIST_ENTRY InLoadOrderModuleList;
+	LIST_ENTRY InMemoryOrderModuleList;
+	LIST_ENTRY InInitializationOrderModuleList;
+} MY_PEB_LDR_DATA, * PMY_PEB_LDR_DATA;
+
+typedef struct _MY_LDR_DATA_TABLE_ENTRY
+{
+	LIST_ENTRY InLoadOrderLinks;
+	LIST_ENTRY InMemoryOrderLinks;
+	LIST_ENTRY InInitializationOrderLinks;
+	PVOID DllBase;
+	PVOID EntryPoint;
+	ULONG SizeOfImage;
+	UNICODE_STRING FullDllName;
+	UNICODE_STRING BaseDllName;
+} MY_LDR_DATA_TABLE_ENTRY, * PMY_LDR_DATA_TABLE_ENTRY;
+
+inline PEB* NtCurrentPeb() {
+#ifdef _WIN64
+	return (PEB*)(__readgsqword(0x60));
+#else
+	return (PEB*)(__readfsdword(0x30));
+#endif
+	// TODO: ARM, ARM64
+};
+
+inline Platform::String^ Str(UNICODE_STRING US) {
+	wchar_t* str = (wchar_t*)malloc(US.Length + sizeof(wchar_t));
+	memcpy(str, US.Buffer, US.Length);
+	str[US.Length / sizeof(wchar_t)] = 0;
+	Platform::String^ ret = ref new Platform::String(str);
+	free(str);
+	return ret;
+}
+
+inline Platform::String^ Str(const char* char_array) {
+	std::string s_str = std::string(char_array);
+	std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
+	const wchar_t* w_char = wid_str.c_str();
+	return ref new Platform::String(w_char);
+}
+
+inline Platform::String^ ToLower(Platform::String^ str) {
+	std::wstring wid_str = str->Data();
+	std::transform(wid_str.begin(), wid_str.end(), wid_str.begin(), ::tolower);
+	return ref new Platform::String(wid_str.c_str());
+}
+
+inline FARPROC GetProcAddress(Platform::String^ dll, Platform::String^ func) {
+	dll = ToLower(dll);
+	func = ToLower(func);
+	auto Ldr = (PMY_PEB_LDR_DATA)(NtCurrentPeb()->Ldr);
+	auto NextModule = Ldr->InLoadOrderModuleList.Flink;
+	auto TableEntry = (PMY_LDR_DATA_TABLE_ENTRY)NextModule;
+	while (TableEntry->DllBase != NULL) {
+		PVOID base = TableEntry->DllBase;
+		Platform::String^ dllName = ToLower(Str(TableEntry->BaseDllName));
+		auto PE = (PIMAGE_NT_HEADERS)((ULONG_PTR)base + ((PIMAGE_DOS_HEADER)base)->e_lfanew);
+		auto exportdirRVA = PE->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress;
+		TableEntry = (PMY_LDR_DATA_TABLE_ENTRY)TableEntry->InLoadOrderLinks.Flink;
+
+		if (exportdirRVA == 0) continue;
+		if (dllName != dll) continue;
+
+		auto Exports = (PIMAGE_EXPORT_DIRECTORY)((ULONG_PTR)base + exportdirRVA);
+		auto Names = (PDWORD)((PCHAR)base + Exports->AddressOfNames);
+		auto Ordinals = (PUSHORT)((ULONG_PTR)base + Exports->AddressOfNameOrdinals);
+		auto Functions = (PDWORD)((ULONG_PTR)base + Exports->AddressOfFunctions);
+
+		for (uint32 iterator = 0; iterator < Exports->NumberOfNames; iterator++) {
+			Platform::String^ funcName = ToLower(Str((PCSTR)(Names[iterator] + (ULONG_PTR)base)));
+
+			if (funcName != func) continue;
+
+			USHORT ordTblIndex = Ordinals[iterator];
+			return (FARPROC)((ULONG_PTR)base + Functions[ordTblIndex]);
+		}
+	}
+	return NULL;
+}
+
+inline BOOL SetWindowPos(HWND hWnd, HWND hWndInsertAfter, int  X, int  Y, int  cx, int  cy, UINT uFlags) {
+	typedef  BOOL(WINAPI* funcSetWindowPos)(HWND hWnd, HWND hWndInsertAfter, int  X, int  Y, int  cx, int  cy, UINT uFlag);
+
+	funcSetWindowPos SetWindowPostmp = (funcSetWindowPos)GetProcAddress("User32.dll", "SetWindowPos");
+	if (SetWindowPostmp == NULL) return NULL;
+	return SetWindowPostmp(hWnd, hWndInsertAfter, X,  Y, cx, cy, uFlags);
+}
+
 
 #define MAX_TOUCH 16
 struct input_pointer
@@ -585,6 +686,19 @@ void App::OnPackageInstalling(PackageCatalog^ sender, PackageInstallingEventArgs
 	}
 }
 
+EXTERN_C const IID IID_ICoreWindowInterop;
+MIDL_INTERFACE("45D64A29-A63E-4CB6-B498-5781D298CB4F")
+ICoreWindowInterop : public IUnknown
+{
+public:
+	virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_WindowHandle(
+		/* [retval][out] */ __RPC__deref_out_opt HWND * hwnd) = 0;
+
+	virtual /* [propput] */ HRESULT STDMETHODCALLTYPE put_MessageHandled(
+		/* [in] */ boolean value) = 0;
+
+};
+
 /* Implement UWP equivalents of various win32_* functions */
 extern "C" {
 
@@ -610,6 +724,7 @@ extern "C" {
 					ApplicationView::GetForCurrentView()->ExitFullScreenMode();
 			}
 			ApplicationView::GetForCurrentView()->TryResizeView(Size(width, height));
+			uwp_resize_window(width, height);
 		}
 		else
 		{
@@ -691,9 +806,31 @@ extern "C" {
 	void* uwp_get_corewindow(void)
 	{
 		ApplicationView::GetForCurrentView()->TryResizeView(Size(uwp_get_width(), uwp_get_height()));
+		uwp_resize_window(uwp_get_width(), uwp_get_height());
 		return (void*)CoreWindow::GetForCurrentThread();
 	}
 
+	bool uwp_resize_window(unsigned width, unsigned height)
+	{
+		HWND hWnd = nullptr;
+		HRESULT hr = S_OK;
+		Microsoft::WRL::ComPtr<ICoreWindowInterop> interop;
+		if (S_OK != (hr = reinterpret_cast<IUnknown*>(CoreWindow::GetForCurrentThread())->QueryInterface(interop.GetAddressOf())))
+		{
+			hWnd = nullptr;
+			return false;
+		}
+		else if (S_OK != (hr = interop->get_WindowHandle(&hWnd)))
+		{
+			hWnd = nullptr;
+			return false;
+		}
+
+		SetWindowPos(hWnd, 0, 0, 0, width, height, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+
+		App::GetInstance()->SetWindowResized();
+		return true;
+	}
 
 
 	int uwp_get_height(void)

@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DESKTOP-E68HVHG</Machine>
+    <WindowsUser>t3</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>DebugANGLE|x64</SolutionConfiguration>
+    <PackageArchitecture>x64</PackageArchitecture>
+    <PackageIdentityName>1e4cf179-f3c2-404f-b9f3-cb2070a5aad8</PackageIdentityName>
+    <PackageIdentityPublisher>CN=t3</PackageIdentityPublisher>
+    <IntermediateOutputPath>C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\x64\DebugANGLE\</IntermediateOutputPath>
+    <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>true</DeployOptionalPackages>
+    <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
+    <LayoutDir>C:\Users\t3\Source\Repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\x64\DebugANGLE\RetroArch-msvc2019-UWP\AppX</LayoutDir>
+    <RegisteredManifestChecksum>96C15058FB531F5C17575A652571DBE6EAFF07CA79BF696D44F04FE74C2EFB9E</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>1e4cf179-f3c2-404f-b9f3-cb2070a5aad8_1.9.0.0_x64__ngdazvfgwwbka</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>1e4cf179-f3c2-404f-b9f3-cb2070a5aad8_ngdazvfgwwbka!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>1e4cf179-f3c2-404f-b9f3-cb2070a5aad8</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=t3</RegisteredPackagePublisher>
+    <RegisteredVersion>1.9.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\t3\Source\Repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\x64\DebugANGLE\RetroArch-msvc2019-UWP\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T22:30:28.301</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\t3\Source\Repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\x64\DebugANGLE\RetroArch-msvc2019-UWP\RetroArch-msvc2019-UWP.exe">
+      <PackagePath>RetroArch-msvc2019-UWP.exe</PackagePath>
+      <Modified>2021-08-18T22:37:53.367</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\Source\Repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\x64\DebugANGLE\RetroArch-msvc2019-UWP\RetroArchUWP.winmd">
+      <PackagePath>RetroArchUWP.winmd</PackagePath>
+      <Modified>2021-08-18T22:29:50.754</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\LargeTile.scale-100.png">
+      <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.194</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\LargeTile.scale-200.png">
+      <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.195</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\LargeTile.scale-400.png">
+      <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.196</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\SmallTile.scale-100.png">
+      <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.197</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\SmallTile.scale-200.png">
+      <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.198</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\SmallTile.scale-400.png">
+      <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.199</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.200</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\SplashScreen.scale-200.png">
+      <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.201</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.202</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square150x150Logo.scale-100.png">
+      <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.203</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square150x150Logo.scale-200.png">
+      <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.203</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square150x150Logo.scale-400.png">
+      <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.204</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.205</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.205</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.206</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.scale-100.png">
+      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.206</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.scale-200.png">
+      <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.207</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.scale-400.png">
+      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.208</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.208</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.209</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.210</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.210</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\StoreLogo.scale-200.png">
+      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.211</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\StoreLogo.scale-400.png">
+      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.212</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Wide310x150Logo.scale-100.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.213</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Wide310x150Logo.scale-200.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.213</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\source\repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\RetroArch-msvc2019-UWP\Assets\Wide310x150Logo.scale-400.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2021-08-18T11:40:58.215</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
+      <PackagePath>ucrtbased.dll</PackagePath>
+      <Modified>2020-12-02T04:31:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\t3\Source\Repos\Xbox-Homebrew\RetroArch\pkg\msvc-uwp\x64\DebugANGLE\RetroArch-msvc2019-UWP\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2021-08-18T22:30:28.209</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.30035.0</Version>
+      <Architecture>ARM</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.30035.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\ARM\Microsoft.VCLibs.ARM.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.30035.0</Version>
+      <Architecture>ARM64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.30035.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\ARM64\Microsoft.VCLibs.ARM64.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.30035.0</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.30035.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.30035.0</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.30035.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x86\Microsoft.VCLibs.x86.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

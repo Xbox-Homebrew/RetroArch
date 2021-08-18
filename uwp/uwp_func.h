@@ -35,6 +35,8 @@ void* uwp_get_corewindow(void);
 int uwp_get_height(void);
 int uwp_get_width(void);
 
+bool uwp_resize_window(unsigned width, unsigned height);
+
 void uwp_input_next_frame(void *data);
 bool uwp_keyboard_pressed(unsigned key);
 int16_t uwp_mouse_state(unsigned port, unsigned id, bool screen);
