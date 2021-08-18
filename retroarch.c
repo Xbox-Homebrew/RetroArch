@@ -30202,10 +30202,10 @@ static bool video_driver_init_internal(
    }
 
 #ifdef __WINRT__
-   if (settings->bools.video_force_resolution)
+   if (uwp_is_xbox())
    {
-      width = settings->uints.video_fullscreen_x != 0 ? settings->uints.video_fullscreen_x : 3840;
-      height = settings->uints.video_fullscreen_y != 0 ? settings->uints.video_fullscreen_y : 2160;
+      width = uwp_get_width();
+      height = uwp_get_height();
    }
 #endif
 

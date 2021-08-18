@@ -15,7 +15,7 @@
 
 #include <ppltasks.h>
 #include <collection.h>
-#include <windows.devices.enumeration.h>
+#include <windows.devices.enumeration.h>	
 
 #include <encodings/utf.h>
 #include <string/stdstring.h>
@@ -594,6 +594,11 @@ extern "C" {
 
 	bool win32_set_video_mode(void *data, unsigned width, unsigned height, bool fullscreen)
 	{
+		if (Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox")
+		{
+			width = uwp_get_width();
+			height = uwp_get_height();
+		}
 		if (App::GetInstance()->IsInitialized())
 		{
 			if (fullscreen != ApplicationView::GetForCurrentView()->IsFullScreenMode)
@@ -631,8 +636,8 @@ extern "C" {
 	bool win32_get_metrics(void* data,
 		enum display_metric_types type, float* value)
 	{
-		int pixels_x        = DisplayInformation::GetForCurrentView()->ScreenWidthInRawPixels;
-		int pixels_y        = DisplayInformation::GetForCurrentView()->ScreenHeightInRawPixels;
+		int pixels_x		= uwp_get_width();
+		int pixels_y		= uwp_get_height();
 		int raw_dpi_x       = DisplayInformation::GetForCurrentView()->RawDpiX;
 		int raw_dpi_y       = DisplayInformation::GetForCurrentView()->RawDpiY;
 		int physical_width  = pixels_x / raw_dpi_x;
@@ -669,27 +674,48 @@ extern "C" {
          bool *quit, bool *resize, unsigned *width, unsigned *height)
 	{
 		*quit   = App::GetInstance()->IsWindowClosed();
-      settings_t* settings = config_get_ptr();
-		if (settings->bools.video_force_resolution)
-		{
-			*width = settings->uints.video_fullscreen_x != 0 ? settings->uints.video_fullscreen_x : 3840;
-			*height = settings->uints.video_fullscreen_y != 0 ? settings->uints.video_fullscreen_y : 2160;
-			return;
-		}
-
+		*width = uwp_get_width();
+		*height = uwp_get_height();
 		*resize = App::GetInstance()->CheckWindowResized();
-		if (*resize)
-		{
-			float dpi = DisplayInformation::GetForCurrentView()->LogicalDpi;
-			*width    = ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Width, dpi);
-			*height   = ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Height, dpi);
-		}
 	}
 
 	void* uwp_get_corewindow(void)
 	{
 		return (void*)CoreWindow::GetForCurrentThread();
 	}
+
+	bool uwp_is_xbox(void)
+	{
+		return Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox";
+	}
+
+	int uwp_get_height(void)
+	{
+		if (uwp_is_xbox())
+		{
+			const Windows::Graphics::Display::Core::HdmiDisplayInformation^ hdi = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView();
+			if (hdi)
+				return Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionHeightInRawPixels;
+		}
+		const LONG32 resolution_scale = static_cast<LONG32>(Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->ResolutionScale);
+		float dpi = DisplayInformation::GetForCurrentView()->LogicalDpi;
+		return ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Height, dpi);
+	}
+
+	int uwp_get_width(void)
+	{
+		
+		if (uwp_is_xbox())
+		{
+			const Windows::Graphics::Display::Core::HdmiDisplayInformation^ hdi = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView();
+			if (hdi)
+				return Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionWidthInRawPixels;
+		}
+		const LONG32 resolution_scale = static_cast<LONG32>(Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->ResolutionScale);
+		float dpi = DisplayInformation::GetForCurrentView()->LogicalDpi;
+		return ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Width, dpi);
+	}
+
 
 	void uwp_fill_installed_core_packages(struct string_list *list)
 	{
