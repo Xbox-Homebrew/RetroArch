@@ -15,8 +15,7 @@
 
 #include <ppltasks.h>
 #include <collection.h>
-#include <windows.devices.enumeration.h>
-#include <gamingdeviceinformation.h>	
+#include <windows.devices.enumeration.h>	
 
 #include <encodings/utf.h>
 #include <string/stdstring.h>
@@ -708,11 +707,7 @@ extern "C" {
 			{
 				if (Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox")
 				{
-					GAMING_DEVICE_MODEL_INFORMATION gdinfo = {};
-					if (SUCCEEDED(GetGamingDeviceModelInformation(&gdinfo)) && gdinfo.vendorId == GAMING_DEVICE_VENDOR_ID_MICROSOFT)
-					{
-						surface_height = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionHeightInRawPixels;
-					}
+					surface_height = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionHeightInRawPixels;
 				}
 			}
 			catch (...) {}
@@ -732,11 +727,7 @@ extern "C" {
 			{
 				if (Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox")
 				{
-					GAMING_DEVICE_MODEL_INFORMATION gdinfo = {};
-					if (SUCCEEDED(GetGamingDeviceModelInformation(&gdinfo)) && gdinfo.vendorId == GAMING_DEVICE_VENDOR_ID_MICROSOFT)
-					{
-						surface_width = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionWidthInRawPixels;
-					}
+					surface_width = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionWidthInRawPixels;
 				}
 			}
 			catch (...) {}
