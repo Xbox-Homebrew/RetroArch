@@ -674,22 +674,13 @@ extern "C" {
          bool *quit, bool *resize, unsigned *width, unsigned *height)
 	{
 		*quit   = App::GetInstance()->IsWindowClosed();
-      settings_t* settings = config_get_ptr();
-	  *width = uwp_get_width();
-	  *height = uwp_get_height();
-
-		/**resize = App::GetInstance()->CheckWindowResized();
-		if (*resize)
-		{
-			float dpi = DisplayInformation::GetForCurrentView()->LogicalDpi;
-			*width    = ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Width, dpi);
-			*height   = ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Height, dpi);
-		}*/
+		*width = uwp_get_width();
+		*height = uwp_get_height();
+		*resize = App::GetInstance()->CheckWindowResized();
 	}
 
 	void* uwp_get_corewindow(void)
 	{
-		ApplicationView::GetForCurrentView()->TryResizeView(Size(uwp_get_width(), uwp_get_height()));
 		return (void*)CoreWindow::GetForCurrentThread();
 	}
 
