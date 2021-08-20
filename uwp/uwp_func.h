@@ -32,6 +32,8 @@ char* uwp_trigger_picker(void);
 
 void* uwp_get_corewindow(void);
 
+bool uwp_is_xbox(void);
+
 int uwp_get_height(void);
 int uwp_get_width(void);
 

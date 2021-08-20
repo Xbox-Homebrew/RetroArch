@@ -684,46 +684,36 @@ extern "C" {
 		return (void*)CoreWindow::GetForCurrentThread();
 	}
 
-
+	bool uwp_is_xbox(void)
+	{
+		return Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox";
+	}
 
 	int uwp_get_height(void)
 	{
-		const Windows::Graphics::Display::Core::HdmiDisplayInformation^ hdi = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView();
-		const LONG32 resolution_scale = static_cast<LONG32>(Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->ResolutionScale);
-		auto surface_scale = static_cast<float>(resolution_scale) / 100.0f;
-		auto surface_height = static_cast<LONG32>(CoreWindow::GetForCurrentThread()->Bounds.Height * surface_scale);
-		if (hdi)
+		if (uwp_is_xbox())
 		{
-			try
-			{
-				if (Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox")
-				{
-					surface_height = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionHeightInRawPixels;
-				}
-			}
-			catch (...) {}
+			const Windows::Graphics::Display::Core::HdmiDisplayInformation^ hdi = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView();
+			if (hdi)
+				return Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionHeightInRawPixels;
 		}
-		return surface_height;
+		const LONG32 resolution_scale = static_cast<LONG32>(Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->ResolutionScale);
+		float dpi = DisplayInformation::GetForCurrentView()->LogicalDpi;
+		return ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Height, dpi);
 	}
 
 	int uwp_get_width(void)
 	{
-		const Windows::Graphics::Display::Core::HdmiDisplayInformation^ hdi = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView();
-		const LONG32 resolution_scale = static_cast<LONG32>(Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->ResolutionScale);
-		auto surface_scale = static_cast<float>(resolution_scale) / 100.0f;
-		auto surface_width = static_cast<LONG32>(CoreWindow::GetForCurrentThread()->Bounds.Width * surface_scale);
-		if (hdi)
+		
+		if (uwp_is_xbox())
 		{
-			try
-			{
-				if (Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Xbox")
-				{
-					surface_width = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionWidthInRawPixels;
-				}
-			}
-			catch (...) {}
+			const Windows::Graphics::Display::Core::HdmiDisplayInformation^ hdi = Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView();
+			if (hdi)
+				return Windows::Graphics::Display::Core::HdmiDisplayInformation::GetForCurrentView()->GetCurrentDisplayMode()->ResolutionWidthInRawPixels;
 		}
-		return surface_width;
+		const LONG32 resolution_scale = static_cast<LONG32>(Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->ResolutionScale);
+		float dpi = DisplayInformation::GetForCurrentView()->LogicalDpi;
+		return ConvertDipsToPixels(CoreWindow::GetForCurrentThread()->Bounds.Width, dpi);
 	}
 
 

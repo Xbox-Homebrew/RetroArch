@@ -30202,8 +30202,11 @@ static bool video_driver_init_internal(
    }
 
 #ifdef __WINRT__
-   width = uwp_get_width();
-   height = uwp_get_height();
+   if (uwp_is_xbox())
+   {
+      width = uwp_get_width();
+      height = uwp_get_height();
+   }
 #endif
 
    if (width && height)
